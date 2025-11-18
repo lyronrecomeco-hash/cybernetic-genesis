@@ -1,4 +1,6 @@
 import { Search, Brain, FileText, FileSignature, Kanban, TrendingUp } from "lucide-react";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 const steps = [
   {
@@ -40,6 +42,16 @@ const steps = [
 ];
 
 export const HowItWorks = () => {
+  const [highlightedStep, setHighlightedStep] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHighlightedStep((prev) => (prev + 1) % steps.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="py-24 px-4 sm:px-6 lg:px-8 bg-background">
       <div className="container mx-auto max-w-7xl">
@@ -65,15 +77,25 @@ export const HowItWorks = () => {
               const isEven = index % 2 === 0;
 
               return (
-                <div
+                <motion.div
                   key={index}
                   className={`relative flex flex-col lg:flex-row items-center gap-8 ${
                     isEven ? "lg:flex-row" : "lg:flex-row-reverse"
                   }`}
+                  initial={{ opacity: 0.6, scale: 0.98 }}
+                  animate={{
+                    opacity: highlightedStep === index ? 1 : 0.6,
+                    scale: highlightedStep === index ? 1 : 0.98,
+                  }}
+                  transition={{ duration: 0.5 }}
                 >
                   {/* Content */}
                   <div className={`flex-1 ${isEven ? "lg:text-right" : "lg:text-left"}`}>
-                    <div className="inline-block p-6 lg:p-8 rounded-2xl bg-gradient-card border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-neon group">
+                    <div className={`inline-block p-6 lg:p-8 rounded-2xl bg-gradient-card border transition-all duration-500 group ${
+                      highlightedStep === index 
+                        ? "border-primary/70 shadow-neon-strong" 
+                        : "border-border hover:border-primary/50 hover:shadow-neon"
+                    }`}>
                       <div className={`flex items-start gap-4 ${isEven ? "lg:flex-row-reverse" : "lg:flex-row"}`}>
                         <div className="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors duration-300">
                           <Icon className="w-8 h-8 text-primary" />
@@ -92,7 +114,7 @@ export const HowItWorks = () => {
 
                   {/* Spacer for alignment */}
                   <div className="hidden lg:block flex-1" />
-                </div>
+                </motion.div>
               );
             })}
           </div>

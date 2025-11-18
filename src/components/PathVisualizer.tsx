@@ -61,7 +61,7 @@ export const PathVisualizer = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveNode((prev) => (prev + 1) % nodes.length);
-    }, 2000);
+    }, 2500);
 
     return () => clearInterval(interval);
   }, []);
@@ -123,7 +123,7 @@ export const PathVisualizer = () => {
                     pathLength: isActive ? 1 : 0,
                     opacity: isActive ? 1 : 0.3,
                   }}
-                  transition={{ duration: 1.5, ease: "easeInOut" }}
+                  transition={{ duration: 2, ease: "easeInOut" }}
                 />
               );
             })}
@@ -145,7 +145,7 @@ export const PathVisualizer = () => {
                 scale: activeNode >= index ? 1 : 0.8,
                 opacity: activeNode >= index ? 1 : 0.5,
               }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
             >
               <div
                 className={`relative group cursor-pointer ${
