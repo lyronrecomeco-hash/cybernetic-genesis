@@ -28,9 +28,8 @@ export const Hero = ({ onCTAClick }: HeroProps) => {
 
           {/* Main heading */}
           <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight">
-            <span className="block text-foreground mb-2">Prospecção com</span>
             <span className="block bg-gradient-to-r from-primary via-neon-glow to-neon-bright bg-clip-text text-transparent animate-glow pb-2 leading-tight">
-              Inteligência Artificial
+              LYRONRP
             </span>
           </h1>
 
