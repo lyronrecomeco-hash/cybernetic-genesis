@@ -15,7 +15,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-black text-foreground">
       <Hero onCTAClick={handleCTAClick} />
       <Features />
       <Differentials />
